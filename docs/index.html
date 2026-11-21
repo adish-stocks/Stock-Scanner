@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Stock Scanner</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c232d;--line:#2a313c;--text:#e8edf3;--muted:#8b96a5;
+--green:#22c55e;--green-d:#14532d;--red:#ef4444;--red-d:#4c1d1d;--amber:#f59e0b;--blue:#3b82f6}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:rgba(13,17,23,.96);backdrop-filter:blur(6px);
+ padding:calc(10px + env(safe-area-inset-top)) 14px 8px;border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800;font-size:1.1rem}
+.upd{color:var(--muted);font-size:.75rem;text-align:right}
+main{padding:12px 12px calc(84px + env(safe-area-inset-bottom))}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:6;display:flex;background:#0f141b;border-top:1px solid var(--line);
+ padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border:0;color:var(--muted);padding:9px 0 8px;font-size:.7rem;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button .i{font-size:1.25rem;line-height:1}
+nav button.on{color:#fff}
+nav button.on .i{transform:scale(1.1)}
+.mood{border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:.9rem;border:1px solid var(--line)}
+.mood b{font-size:.95rem}
+.mood.Strong{background:#0f2a1a;border-color:#1e5a36}
+.mood.Okay{background:#2a230f;border-color:#5a4a1e}
+.mood.Weak{background:#2a1212;border-color:#5a1e1e}
+.tools{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tools label{font-size:.8rem;color:var(--muted)}
+.tools input{background:#0d1117;border:1px solid var(--line);color:#fff;border-radius:8px;padding:7px 9px;width:120px;font-size:.95rem}
+.chips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#0d1117;color:var(--text);border-radius:999px;padding:5px 11px;font-size:.8rem}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.rank{background:#243042;color:#cfe0ff;border-radius:8px;font-weight:800;font-size:.8rem;padding:3px 7px;margin-right:8px}
+.sym{font-weight:800;font-size:1.08rem}
+.nm{color:var(--muted);font-size:.78rem;margin-top:1px}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}
+.tag{font-size:.7rem;border-radius:6px;padding:2px 7px;background:#222b37;color:#c7d2e0}
+.tag.Breakout{background:#1d2c4a;color:#9cc1ff}.tag.Pullback{background:#2b2342;color:#c9b4ff}
+.tag.Momentum{background:#3a2a12;color:#ffcf87}.tag.pos{background:var(--green-d);color:#86efac}
+.tag.neg{background:var(--red-d);color:#fca5a5}
+.win{text-align:right;min-width:74px}
+.win .p{font-weight:800;font-size:1.35rem;line-height:1}
+.win .l{font-size:.65rem;color:var(--muted)}
+.lv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:8px 0}
+.lv div{background:var(--card2);border-radius:9px;padding:7px 8px}
+.lv .k{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.lv .v{font-weight:700;font-size:.95rem}
+.lv .s{font-size:.75rem;font-weight:700}
+.g{color:var(--green)}.r{color:var(--red)}.a{color:var(--amber)}
+.hold{font-size:.82rem;color:#cbd5e1;margin:4px 0}
+.money{background:#0f1a14;border:1px dashed #1f4d32;border-radius:9px;padding:7px 9px;font-size:.82rem;margin:8px 0}
+.why{margin:6px 0 0;padding-left:18px;font-size:.84rem;color:#cdd6e1}
+.why li{margin:2px 0}
+details{margin-top:8px;font-size:.82rem}
+summary{color:#9cc1ff;cursor:pointer}
+.news a{display:block;color:#dbe7ff;text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line)}
+.news small{color:var(--muted)}
+.lnk{display:inline-block;margin-top:8px;font-size:.8rem;color:#9cc1ff;text-decoration:none}
+.h{font-weight:800;font-size:1.05rem;margin:4px 2px 10px}
+.sub{color:var(--muted);font-size:.8rem;margin:-6px 2px 12px}
+.empty{color:var(--muted);text-align:center;padding:30px 10px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+.stat .v{font-size:1.4rem;font-weight:800}
+.stat .k{font-size:.72rem;color:var(--muted)}
+.pk{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);font-size:.85rem}
+.st{font-size:.72rem;border-radius:6px;padding:2px 7px;white-space:nowrap}
+.st.ok{background:var(--green-d);color:#86efac}.st.bad{background:var(--red-d);color:#fca5a5}
+.st.open{background:#1d2c4a;color:#9cc1ff}.st.mid{background:#2a2a2a;color:#cbd5e1}
+.bar{height:6px;border-radius:3px;background:#222b37;margin-top:5px;overflow:hidden}
+.bar i{display:block;height:100%}
+.sec{padding:9px 0;border-bottom:1px solid var(--line)}
+.help p,.help li{font-size:.9rem;color:#d3dbe6}
+.help h3{font-size:1rem;margin:16px 0 6px}
+.warn{background:#2a230f;border:1px solid #5a4a1e;border-radius:10px;padding:10px;font-size:.82rem;color:#f3dfb0;margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+td,th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand">📈 Stock Scanner</div>
+    <div class="upd" id="upd">Loading…</div>
+  </div>
+</header>
+<main id="app"><div class="empty">Loading today's scan…</div></main>
+<nav id="nav">
+  <button data-t="swing" class="on"><span class="i">🎯</span>Swing</button>
+  <button data-t="intra"><span class="i">⚡</span>Intraday</button>
+  <button data-t="sectors"><span class="i">🏭</span>Sectors</button>
+  <button data-t="results"><span class="i">📊</span>Results</button>
+  <button data-t="help"><span class="i">❓</span>Help</button>
+</nav>
+<script>
+var D=null, tab='swing';
+var S={amount:50000,minWin:0};
+try{var sv=JSON.parse(localStorage.getItem('scanner_prefs')||'{}');if(sv.amount)S.amount=sv.amount;if(sv.minWin!=null)S.minWin=sv.minWin;}catch(e){}
+function save(){try{localStorage.setItem('scanner_prefs',JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function inr(x,d){if(x==null)return '–';return '₹'+Number(x).toLocaleString('en-IN',{maximumFractionDigits:d==null?2:d,minimumFractionDigits:0})}
+function pct(x){return x==null?'–':(x>0?'+':'')+Number(x).toFixed(1)+'%'}
+function winColor(w){return w>=70?'g':w>=55?'a':'r'}
+function money(entry,tgt,sl){
+  var q=Math.floor(S.amount/entry); if(q<1) return '<div class="money">Your amount '+inr(S.amount,0)+' is less than 1 share.</div>';
+  return '<div class="money">With '+inr(S.amount,0)+': buy <b>'+q+' shares</b> → if target hits ≈ <b class="g">'+inr((tgt-entry)*q,0)+' profit</b>, if stop hits ≈ <b class="r">'+inr((entry-sl)*q,0)+' loss</b></div>';
+}
+function tools(){
+  var c=[0,60,70,80].map(function(v){return '<button class="chip'+(S.minWin===v?' on':'')+'" data-w="'+v+'">'+(v?v+'%+':'All')+'</button>'}).join('');
+  return '<div class="tools"><div class="row"><label for="amt">Amount per trade</label><input id="amt" type="number" inputmode="numeric" value="'+S.amount+'"></div>'+
+         '<div class="chips"><label style="align-self:center">Min. past success</label>'+c+'</div></div>';
+}
+function moodBox(){
+  var m=D.market||{};
+  return '<div class="mood '+esc(m.mood)+'"><b>Market: '+esc(m.mood)+'</b> · Nifty '+inr(m.nifty,0)+' <span class="'+(m.nifty_chg>=0?'g':'r')+'">'+pct(m.nifty_chg)+'</span>'+(m.vix?' · VIX '+m.vix:'')+'<br>'+esc(m.mood_text)+'</div>';
+}
+function successBlock(c){
+  var w=c.win_score;
+  var detail=c.stock_trades? 'Hit target '+c.stock_wins+' of '+c.stock_trades+' times on this stock':'New setup for this stock';
+  return '<div class="win"><div class="p '+winColor(w)+'">'+Math.round(w)+'%</div><div class="l">past success</div></div>';
+}
+function swingCard(c){
+  var news=c.news||{label:'No news',items:[]};
+  var nt=news.label==='Positive'?'<span class="tag pos">News: Positive</span>':news.label==='Negative'?'<span class="tag neg">News: Negative</span>':'<span class="tag">News: '+esc(news.label)+'</span>';
+  var h='<div class="card"><div class="ch"><div><span class="rank">#'+c.rank+'</span><span class="sym">'+esc(c.symbol)+'</span><div class="nm">'+esc(c.name)+'</div></div>'+successBlock(c)+'</div>';
+  h+='<div class="tags"><span class="tag '+esc(c.setup)+'">'+esc(c.setup)+'</span><span class="tag">'+esc(c.cap)+'</span><span class="tag">'+esc(c.sector)+'</span>'+nt+'</div>';
+  h+='<div class="lv"><div><div class="k">Buy</div><div class="v">'+inr(c.close)+'</div><div class="s" style="color:var(--muted);font-weight:500">up to '+inr(c.buy_upto)+'</div></div>'+
+     '<div><div class="k">Target</div><div class="v g">'+inr(c.target)+'</div><div class="s g">'+pct(c.profit_pct)+'</div></div>'+
+     '<div><div class="k">Stop loss</div><div class="v r">'+inr(c.sl)+'</div><div class="s r">−'+Number(c.risk_pct).toFixed(1)+'%</div></div></div>';
+  h+='<div class="hold">⏱ Hold up to <b>'+c.hold_days+' trading days</b>'+(c.usual_days?' · usually hits target in ~'+c.usual_days+' days':'')+'. Exit at target, stop loss, or on day '+c.hold_days+' — whichever comes first.</div>';
+  h+='<div class="hold">📚 '+(c.stock_trades?'This setup hit its target <b>'+c.stock_wins+' of '+c.stock_trades+'</b> times on '+esc(c.symbol)+' in the last 3 years':'Not enough history on this stock')+' · across all stocks: '+c.setup_win+'%.</div>';
+  h+=money(c.close,c.target,c.sl);
+  h+='<ul class="why">'+c.why.map(function(w){return '<li>'+esc(w)+'</li>'}).join('')+'</ul>';
+  if(news.items&&news.items.length){h+='<details><summary>Latest news ('+news.items.length+')</summary><div class="news">'+news.items.map(function(n){return '<a href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.title)+'<br><small>'+esc(n.source)+'</small></a>'}).join('')+'</div></details>';}
+  h+='<a class="lnk" href="https://in.tradingview.com/chart/?symbol=NSE%3A'+encodeURIComponent(c.symbol)+'" target="_blank" rel="noopener">Open chart ↗</a></div>';
+  return h;
+}
+function intraCard(c){
+  var h='<div class="card"><div class="ch"><div><span class="rank">#'+c.rank+'</span><span class="sym">'+esc(c.symbol)+'</span><div class="nm">'+esc(c.name)+'</div></div>'+successBlock(c)+'</div>';
+  h+='<div class="tags"><span class="tag">'+esc(c.cap)+'</span><span class="tag">'+esc(c.sector)+'</span></div>';
+  h+='<div class="lv"><div><div class="k">Buy above</div><div class="v">'+inr(c.trigger)+'</div></div>'+
+     '<div><div class="k">Target</div><div class="v g">'+inr(c.target)+'</div><div class="s g">'+pct(c.profit_pct)+'</div></div>'+
+     '<div><div class="k">Stop loss</div><div class="v r">'+inr(c.sl)+'</div><div class="s r">−'+Number(c.risk_pct).toFixed(1)+'%</div></div></div>';
+  h+='<div class="hold">⏱ <b>Same day only.</b> Buy only if price crosses '+inr(c.trigger)+' tomorrow. If it never crosses, skip it. Sell everything by 3:15 PM.</div>';
+  h+=money(c.trigger,c.target,c.sl);
+  h+='<ul class="why">'+c.why.map(function(w){return '<li>'+esc(w)+'</li>'}).join('')+'</ul>';
+  h+='<a class="lnk" href="https://in.tradingview.com/chart/?symbol=NSE%3A'+encodeURIComponent(c.symbol)+'" target="_blank" rel="noopener">Open chart ↗</a></div>';
+  return h;
+}
+function renderList(list,card,title,sub,emptyMsg){
+  var f=list.filter(function(c){return c.win_score>=S.minWin});
+  var h=moodBox()+tools()+'<div class="h">'+title+'</div><div class="sub">'+sub+'</div>';
+  if(!list.length) return h+'<div class="empty">'+emptyMsg+'</div>';
+  if(!f.length) return h+'<div class="empty">No stocks with '+S.minWin+'%+ past success today. Tap "All" to see the rest, or wait for tomorrow.</div>';
+  return h+f.map(card).join('');
+}
+function renderSectors(){
+  var s=D.sectors||[]; if(!s.length) return '<div class="empty">No sector data.</div>';
+  var mx=Math.max.apply(null,s.map(function(x){return Math.abs(x.ret20||0)}))||1;
+  return '<div class="h">Sector strength</div><div class="sub">Median 1-month move of stocks in each sector. Picks from the top sectors get a small boost.</div><div class="card">'+
+    s.map(function(x){var w=Math.abs(x.ret20||0)/mx*100,col=x.ret20>=0?'var(--green)':'var(--red)';
+      return '<div class="sec"><div class="row" style="justify-content:space-between"><span><b>#'+x.rank+'</b> '+esc(x.sector)+' <small style="color:var(--muted)">('+x.stocks+')</small></span><span class="'+(x.ret20>=0?'g':'r')+'">'+pct(x.ret20)+' <small style="color:var(--muted)">1M</small></span></div><div class="bar"><i style="width:'+w+'%;background:'+col+'"></i></div><small style="color:var(--muted)">1 week '+pct(x.ret5)+' · '+x.breadth+'% of stocks beating Nifty</small></div>'}).join('')+'</div>';
+}
+function stBadge(s){var c=s==='Target hit'?'ok':s==='Stop loss'?'bad':s==='Open'?'open':'mid';return '<span class="st '+c+'">'+esc(s)+'</span>'}
+function renderResults(){
+  var R=D.results||{}, sw=R.swing||{}, it=R.intraday||{};
+  var h='<div class="h">Live results</div><div class="sub">Every pick the app has made since you started it, and what actually happened.</div>';
+  h+='<div class="stats"><div class="stat"><div class="v '+(sw.target_rate>=70?'g':'a')+'">'+(sw.target_rate==null?'–':sw.target_rate+'%')+'</div><div class="k">Swing: target hit rate ('+(sw.closed||0)+' closed)</div></div>'+
+     '<div class="stat"><div class="v">'+(sw.profit_rate==null?'–':sw.profit_rate+'%')+'</div><div class="k">Swing: trades in profit</div></div>'+
+     '<div class="stat"><div class="v '+((sw.avg_ret||0)>=0?'g':'r')+'">'+(sw.avg_ret==null?'–':pct(sw.avg_ret))+'</div><div class="k">Swing: average result per trade</div></div>'+
+     '<div class="stat"><div class="v">'+(it.target_rate==null?'–':it.target_rate+'%')+'</div><div class="k">Intraday: target hit rate ('+(it.closed||0)+' closed)</div></div></div>';
+  var st=D.setups||{};
+  h+='<div class="card"><b>3-year backtest (all stocks)</b><table><tr><th>Setup</th><th>Trades</th><th>Target hit</th><th>Avg</th></tr>'+
+    Object.keys(st).map(function(k){var x=st[k];return '<tr><td>'+esc(k)+'</td><td>'+x.trades+'</td><td class="'+winColor(x.win_rate)+'">'+x.win_rate+'%</td><td>'+pct(x.avg_ret)+'</td></tr>'}).join('')+'</table></div>';
+  var rec=R.recent||[];
+  h+='<div class="card"><b>Recent picks</b>'+(rec.length?rec.map(function(p){return '<div class="pk"><div><b>'+esc(p.symbol)+'</b> <small style="color:var(--muted)">'+esc(p.date)+' · '+esc(p.type)+'</small><br><small style="color:var(--muted)">Entry '+inr(p.entry)+' → T '+inr(p.target)+' / SL '+inr(p.sl)+'</small></div><div style="text-align:right">'+stBadge(p.status)+(p.ret_pct!=null?'<br><small class="'+(p.ret_pct>=0?'g':'r')+'">'+pct(p.ret_pct)+'</small>':'')+'</div></div>'}).join(''):'<div class="empty">No picks yet. Results appear after a few trading days.</div>')+'</div>';
+  return h;
+}
+function renderHelp(){
+  return '<div class="help"><div class="h">How to use this app</div>'+
+  '<h3>🎯 Swing (main tab)</h3><ul><li>Updated every trading day after 4:45 PM with tomorrow\'s best setups.</li><li><b>Buy</b> the next morning near the "Buy" price. Don\'t buy above "up to" — if it opens higher, skip it.</li><li>Place your <b>stop loss</b> right after buying. Sell at <b>target</b>, at stop loss, or at the end of the holding period.</li><li><b>Past success %</b> = how often this exact setup hit its target before the stop on this stock over the last 3 years (blended with all stocks when history is short).</li></ul>'+
+  '<h3>⚡ Intraday</h3><ul><li>Buy only if the price crosses "Buy above" during the day. Exit the same day by 3:15 PM.</li></ul>'+
+  '<h3>📊 Results</h3><ul><li>Shows the real outcome of every pick. Check this before trusting the app with more money.</li></ul>'+
+  '<h3>💰 Money rules</h3><ul><li>Set "Amount per trade" to the money you\'re comfortable putting in one stock.</li><li>Don\'t take more than 3–5 trades at once. Skip days when Market says <b>Weak</b>.</li></ul>'+
+  '<div class="warn">For personal, educational use only — not investment advice. Past success does not guarantee future results. Prices are end-of-day; always check the live price before buying.</div></div>';
+}
+function render(){
+  var a=document.getElementById('app');
+  if(!D){return}
+  if(tab==='swing') a.innerHTML=renderList(D.swing||[],swingCard,'Top swing picks · hold 1–'+((D.settings||{}).hold_days||3)+' days','From '+D.universe+' stocks (large, mid & small cap). '+(D.swing_candidates||0)+' setups found, best '+(D.swing||[]).length+' shown.','No strong swing setups today. That\'s normal — no trade is better than a bad trade.');
+  else if(tab==='intra') a.innerHTML=renderList(D.intraday||[],intraCard,'Intraday watchlist for next session','Buy only if price breaks above the trigger.','No intraday setups today.');
+  else if(tab==='sectors') a.innerHTML=renderSectors();
+  else if(tab==='results') a.innerHTML=renderResults();
+  else a.innerHTML=renderHelp();
+  var amt=document.getElementById('amt');
+  if(amt) amt.addEventListener('change',function(){var v=parseFloat(amt.value);if(v>0){S.amount=v;save();render()}});
+  document.querySelectorAll('[data-w]').forEach(function(b){b.addEventListener('click',function(){S.minWin=+b.getAttribute('data-w');save();render()})});
+}
+document.querySelectorAll('#nav button').forEach(function(b){b.addEventListener('click',function(){
+  tab=b.getAttribute('data-t');document.querySelectorAll('#nav button').forEach(function(x){x.classList.toggle('on',x===b)});render();window.scrollTo(0,0)})});
+fetch('data.json?v='+Date.now()).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+  D=d;document.getElementById('upd').innerHTML='Prices of '+esc(d.data_date)+'<br>Updated '+esc(d.generated_at);render();
+}).catch(function(){document.getElementById('upd').textContent='No data';
+  document.getElementById('app').innerHTML='<div class="empty">No scan data yet.<br><br>Open your GitHub repository → <b>Actions</b> → <b>Daily Stock Scan</b> → <b>Run workflow</b>, wait about 10 minutes, then refresh this page.</div>';});
+</script>
+</body>
+</html>

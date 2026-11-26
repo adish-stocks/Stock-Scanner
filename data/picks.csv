@@ -1,16 +1,16 @@
 date,type,symbol,name,setup,entry,buy_upto,target,sl,hold_days,status,exit_date,ret_pct
-2026-11-20,swing,PHOENIXLTD,Phoenix Mills Ltd.,Momentum,2285.3,2302.57,2354.37,2181.7,3,Open,,
-2026-11-20,swing,BOSCHLTD,Bosch Ltd.,Pullback,49360.0,49654.29,50831.47,47594.24,3,Open,,
-2026-11-20,swing,CYIENT,Cyient Ltd.,Pullback,1155.5,1166.78,1211.9,1087.82,3,Open,,
-2026-11-20,swing,PRESTIGE,Prestige Estates Projects Ltd.,Momentum,1680.0,1693.2,1732.79,1600.81,3,Open,,
+2026-11-20,swing,PHOENIXLTD,Phoenix Mills Ltd.,Momentum,2285.3,2302.57,2354.37,2181.7,3,Time exit,2026-11-26,0.04
+2026-11-20,swing,BOSCHLTD,Bosch Ltd.,Pullback,49360.0,49654.29,50831.47,47594.24,3,Time exit,2026-11-26,-1.59
+2026-11-20,swing,CYIENT,Cyient Ltd.,Pullback,1155.5,1166.78,1211.9,1087.82,3,Time exit,2026-11-26,-0.55
+2026-11-20,swing,PRESTIGE,Prestige Estates Projects Ltd.,Momentum,1680.0,1693.2,1732.79,1600.81,3,Target hit,2026-11-26,2.78
 2026-11-20,swing,BHEL,Bharat Heavy Electricals Ltd.,Pullback,433.65,437.14,451.09,412.72,3,Stop loss,2026-11-25,-4.99
-2026-11-20,swing,BSE,BSE Ltd.,Pullback,3781.0,3810.05,3926.26,3606.69,3,Open,,
+2026-11-20,swing,BSE,BSE Ltd.,Pullback,3781.0,3810.05,3926.26,3606.69,3,Target hit,2026-11-26,3.32
 2026-11-20,swing,LGEINDIA,LG Electronics India Ltd.,Pullback,1740.7,1754.22,1808.31,1659.57,3,Target hit,2026-11-25,3.93
-2026-11-20,swing,BEML,BEML Ltd.,Pullback,2052.4,2071.75,2149.16,1936.28,3,Open,,
+2026-11-20,swing,BEML,BEML Ltd.,Pullback,2052.4,2071.75,2149.16,1936.28,3,Time exit,2026-11-26,-0.96
 2026-11-20,swing,JSWSTEEL,JSW Steel Ltd.,Pullback,1337.0,1344.81,1376.05,1290.13,3,Stop loss,2026-11-25,-3.18
-2026-11-20,swing,MOTHERSON,Samvardhana Motherson International Ltd.,Pullback,166.53,167.99,173.82,157.78,3,Open,,
+2026-11-20,swing,MOTHERSON,Samvardhana Motherson International Ltd.,Pullback,166.53,167.99,173.82,157.78,3,Time exit,2026-11-26,-1.15
 2026-11-20,swing,KIMS,Krishna Institute of Medical Sciences Ltd.,Breakout,795.6,801.31,829.85,761.35,3,Skipped (gap up),2026-11-23,
-2026-11-20,swing,CPPLUS,Aditya Infotech Ltd.,Pullback,4026.2,4071.47,4252.57,3754.55,3,Open,,
+2026-11-20,swing,CPPLUS,Aditya Infotech Ltd.,Pullback,4026.2,4071.47,4252.57,3754.55,3,Target hit,2026-11-26,5.0
 2026-11-20,swing,TATACOMM,Tata Communications Ltd.,Pullback,1751.0,1764.61,1819.03,1669.36,3,Skipped (gap up),2026-11-23,
 2026-11-20,swing,DLF,DLF Ltd.,Breakout,785.0,789.69,813.15,756.85,3,Skipped (gap up),2026-11-23,
 2026-11-20,swing,NYKAA,FSN E-Commerce Ventures Ltd.,Pullback,364.0,366.49,376.46,349.04,3,Skipped (gap up),2026-11-23,
@@ -26,7 +26,7 @@ date,type,symbol,name,setup,entry,buy_upto,target,sl,hold_days,status,exit_date,
 2026-11-20,intraday,UNITDSPR,United Spirits Ltd.,Intraday,1474.37,,1485.64,1459.36,1,Stop loss,2026-11-23,-1.02
 2026-11-23,swing,LAURUSLABS,Laurus Labs Ltd.,Pullback,2370.7,2390.87,2471.55,2249.68,3,Skipped (gap up),2026-11-25,
 2026-11-23,swing,ACMESOLAR,ACME Solar Holdings Ltd.,Pullback,411.6,415.47,430.97,388.35,3,Open,,
-2026-11-23,swing,OBEROIRLTY,Oberoi Realty Ltd.,Momentum,1860.0,1872.42,1909.69,1785.47,3,Open,,
+2026-11-23,swing,OBEROIRLTY,Oberoi Realty Ltd.,Momentum,1860.0,1872.42,1909.69,1785.47,3,Target hit,2026-11-26,2.67
 2026-11-23,swing,LGEINDIA,LG Electronics India Ltd.,Pullback,1777.5,1791.3,1846.49,1694.72,3,Open,,
 2026-11-23,swing,GESHIP,Great Eastern Shipping Co. Ltd.,Pullback,1538.3,1551.16,1602.58,1461.16,3,Open,,
 2026-11-23,swing,GRAPHITE,Graphite India Ltd.,Pullback,789.9,796.67,823.73,749.3,3,Open,,
@@ -52,7 +52,7 @@ date,type,symbol,name,setup,entry,buy_upto,target,sl,hold_days,status,exit_date,
 2026-11-25,swing,AETHER,Aether Industries Ltd.,Pullback,1676.5,1694.44,1766.2,1568.86,3,Open,,
 2026-11-25,swing,ACMESOLAR,ACME Solar Holdings Ltd.,Pullback,416.7,420.5,435.72,393.88,3,Open,,
 2026-11-25,swing,ACUTAAS,Acutaas Chemicals Ltd.,Pullback,3993.0,4033.46,4195.3,3750.24,3,Open,,
-2026-11-25,swing,ACE,Action Construction Equipment Ltd.,Pullback,1190.35,1200.68,1242.01,1128.36,3,Open,,
+2026-11-25,swing,ACE,Action Construction Equipment Ltd.,Pullback,1190.35,1200.68,1242.01,1128.36,3,Target hit,2026-11-26,3.97
 2026-11-25,swing,BOSCHLTD,Bosch Ltd.,Pullback,49130.0,49414.19,50550.97,47424.84,3,Open,,
 2026-11-25,swing,GRAPHITE,Graphite India Ltd.,Pullback,794.45,801.11,827.73,754.51,3,Open,,
 2026-11-25,swing,BEML,BEML Ltd.,Pullback,2041.2,2060.21,2136.24,1927.15,3,Open,,
@@ -63,13 +63,38 @@ date,type,symbol,name,setup,entry,buy_upto,target,sl,hold_days,status,exit_date,
 2026-11-25,swing,TATACAP,Tata Capital Ltd.,Pullback,351.6,353.97,363.44,337.39,3,Open,,
 2026-11-25,swing,JSWINFRA,JSW Infrastructure Ltd.,Breakout,357.65,360.43,374.31,346.54,3,Open,,
 2026-11-25,swing,SHYAMMETL,Shyam Metalics and Energy Ltd.,Pullback,1292.1,1303.9,1351.11,1221.29,3,Open,,
-2026-11-25,intraday,ANGELONE,Angel One Ltd.,Intraday,350.1,,354.44,344.31,1,Open,,
-2026-11-25,intraday,UNIONBANK,Union Bank of India,Intraday,215.32,,217.07,212.98,1,Open,,
-2026-11-25,intraday,GESHIP,Great Eastern Shipping Co. Ltd.,Intraday,1559.46,,1574.29,1539.68,1,Open,,
-2026-11-25,intraday,IDFCFIRSTB,IDFC First Bank Ltd.,Intraday,88.24,,88.94,87.3,1,Open,,
-2026-11-25,intraday,WELSPUNLIV,Welspun Living Ltd.,Intraday,279.12,,283.1,273.81,1,Open,,
-2026-11-25,intraday,BPCL,Bharat Petroleum Corporation Ltd.,Intraday,311.01,,313.36,307.88,1,Open,,
-2026-11-25,intraday,IOC,Indian Oil Corporation Ltd.,Intraday,147.94,,149.01,146.51,1,Open,,
-2026-11-25,intraday,HINDPETRO,Hindustan Petroleum Corporation Ltd.,Intraday,392.74,,396.03,388.36,1,Open,,
-2026-11-25,intraday,PIDILITIND,Pidilite Industries Ltd.,Intraday,1630.63,,1642.38,1614.96,1,Open,,
-2026-11-25,intraday,ACMESOLAR,ACME Solar Holdings Ltd.,Intraday,417.92,,422.48,411.83,1,Open,,
+2026-11-25,intraday,ANGELONE,Angel One Ltd.,Intraday,350.1,,354.44,344.31,1,Target hit,2026-11-26,1.24
+2026-11-25,intraday,UNIONBANK,Union Bank of India,Intraday,215.32,,217.07,212.98,1,Not triggered,2026-11-26,
+2026-11-25,intraday,GESHIP,Great Eastern Shipping Co. Ltd.,Intraday,1559.46,,1574.29,1539.68,1,Not triggered,2026-11-26,
+2026-11-25,intraday,IDFCFIRSTB,IDFC First Bank Ltd.,Intraday,88.24,,88.94,87.3,1,Not triggered,2026-11-26,
+2026-11-25,intraday,WELSPUNLIV,Welspun Living Ltd.,Intraday,279.12,,283.1,273.81,1,Stop loss,2026-11-26,-1.9
+2026-11-25,intraday,BPCL,Bharat Petroleum Corporation Ltd.,Intraday,311.01,,313.36,307.88,1,Not triggered,2026-11-26,
+2026-11-25,intraday,IOC,Indian Oil Corporation Ltd.,Intraday,147.94,,149.01,146.51,1,Not triggered,2026-11-26,
+2026-11-25,intraday,HINDPETRO,Hindustan Petroleum Corporation Ltd.,Intraday,392.74,,396.03,388.36,1,Not triggered,2026-11-26,
+2026-11-25,intraday,PIDILITIND,Pidilite Industries Ltd.,Intraday,1630.63,,1642.38,1614.96,1,Not triggered,2026-11-26,
+2026-11-25,intraday,ACMESOLAR,ACME Solar Holdings Ltd.,Intraday,417.92,,422.48,411.83,1,Closed at 3:30,2026-11-26,-0.51
+2026-11-26,swing,NUVAMA,Nuvama Wealth Management Ltd.,Pullback,1854.8,1873.8,1949.78,1778.81,3,Open,,
+2026-11-26,swing,SUNTV,Sun TV Network Ltd.,Pullback,651.1,659.61,693.66,617.05,3,Open,,
+2026-11-26,swing,FEDERALBNK,Federal Bank Ltd.,Pullback,356.85,359.19,368.53,347.51,3,Open,,
+2026-11-26,swing,MCX,Multi Commodity Exchange of India Ltd.,Breakout,3835.0,3870.59,4048.53,3692.65,3,Open,,
+2026-11-26,swing,FSL,Firstsource Solutions Ltd.,Pullback,289.15,291.91,302.96,278.1,3,Open,,
+2026-11-26,swing,JYOTICNC,Jyoti CNC Automation Ltd.,Pullback,1050.35,1061.57,1106.44,1005.48,3,Open,,
+2026-11-26,swing,LTFOODS,LT Foods Ltd.,Pullback,423.6,427.0,440.58,410.02,3,Open,,
+2026-11-26,swing,FLUOROCHEM,Gujarat Fluorochemicals Ltd.,Pullback,4781.2,4824.68,4998.6,4607.28,3,Open,,
+2026-11-26,swing,RUBICON,Rubicon Research Ltd.,Breakout,1851.7,1871.27,1969.1,1773.43,3,Open,,
+2026-11-26,swing,LODHA,Lodha Developers Ltd.,Breakout,1261.2,1272.6,1329.61,1215.59,3,Open,,
+2026-11-26,swing,KPRMILL,K.P.R. Mill Ltd.,Pullback,1190.5,1200.44,1240.21,1150.73,3,Open,,
+2026-11-26,swing,ADANIPOWER,Adani Power Ltd.,Pullback,208.3,209.69,215.24,202.75,3,Open,,
+2026-11-26,swing,BAJAJHLDNG,Bajaj Holdings & Investment Ltd.,Breakout,11933.0,12020.01,12455.09,11584.94,3,Open,,
+2026-11-26,swing,GABRIEL,Gabriel India Ltd.,Pullback,1537.3,1554.15,1621.56,1469.89,3,Open,,
+2026-11-26,swing,PRESTIGE,Prestige Estates Projects Ltd.,Breakout,1832.1,1846.79,1920.27,1773.32,3,Open,,
+2026-11-26,intraday,SHREECEM,Shree Cement Ltd.,Intraday,25425.4,,25588.56,25207.85,1,Open,,
+2026-11-26,intraday,SBILIFE,SBI Life Insurance Company Ltd.,Intraday,1850.25,,1863.27,1832.89,1,Open,,
+2026-11-26,intraday,ADANIPOWER,Adani Power Ltd.,Intraday,210.01,,211.67,207.79,1,Open,,
+2026-11-26,intraday,BPCL,Bharat Petroleum Corporation Ltd.,Intraday,309.31,,311.6,306.26,1,Open,,
+2026-11-26,intraday,HINDPETRO,Hindustan Petroleum Corporation Ltd.,Intraday,388.29,,391.51,383.99,1,Open,,
+2026-11-26,intraday,KPRMILL,K.P.R. Mill Ltd.,Intraday,1197.2,,1209.13,1181.29,1,Open,,
+2026-11-26,intraday,AMBUJACEM,Ambuja Cements Ltd.,Intraday,393.19,,396.41,388.9,1,Open,,
+2026-11-26,intraday,GICRE,General Insurance Corporation of India,Intraday,336.59,,339.26,333.03,1,Open,,
+2026-11-26,intraday,ACC,ACC Ltd.,Intraday,1267.27,,1276.58,1254.84,1,Open,,
+2026-11-26,intraday,SAILIFE,Sai Life Sciences Ltd.,Intraday,1828.83,,1850.27,1800.24,1,Open,,
